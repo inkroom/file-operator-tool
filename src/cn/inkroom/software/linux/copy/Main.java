@@ -1,5 +1,8 @@
 package cn.inkroom.software.linux.copy;
 
+import cn.inkroom.software.linux.factory.ToolFactory;
+import cn.inkroom.software.linux.tool.AbstractTool;
+
 import java.io.*;
 import java.util.regex.Pattern;
 
@@ -11,37 +14,45 @@ public class Main {
      * @param args
      */
     public static void main(String[] args) {
+
+        AbstractTool tool = ToolFactory.createTool(args);
+        tool.execute();
+
+
+//        Pattern pattern = Pattern.compile("p0");
+//        System.out.println(pattern.matcher("58393716_p0.jpg").find());
+
         //解析命令
-        if (args.length > 0) {
-            switch (args[0]) {
-                case "--help":
-                    System.out.println("命令格式为：copy 源文件夹 目标文件夹 正则表达式");
-                    System.out.println("命令格式为：del 源文件夹 正则表达式 [-l]");
-                    break;
-                case "copy":
-                    if (args.length >= 4) {
-                        copy(args[1], args[2], args[3]);
-                    } else {
-                        System.out.println("命令格式为：copy 源文件夹 目标文件夹 正则表达式");
-                    }
-                    break;
-                case "del":
-                    if (args.length >= 3) {
-                        if (args.length == 4 && args[3].equals("-l")) {
-                            delete(args[1], args[2], true);
-                        } else if (!args[3].equals("-l")) {
-                            System.out.println("命令格式为：del 源文件夹 正则表达式 [-l]");
-                        }
-                    } else {
-                        System.out.println("命令格式为：del 源文件夹 正则表达式 [-l]");
-                    }
-                    break;
-                default:
-                    System.out.println("错误命令，输入--help查看帮助");
-            }
-        } else {
-            System.out.println("输入--help查看帮助");
-        }
+//        if (args.length > 0) {
+//            switch (args[0]) {
+//                case "--help":
+//                    System.out.println("命令格式为：copy 源文件夹 目标文件夹 正则表达式");
+//                    System.out.println("命令格式为：del 源文件夹 正则表达式 [-l]");
+//                    break;
+//                case "copy":
+//                    if (args.length >= 4) {
+//                        copy(args[1], args[2], args[3]);
+//                    } else {
+//                        System.out.println("命令格式为：copy 源文件夹 目标文件夹 正则表达式");
+//                    }
+//                    break;
+//                case "del":
+//                    if (args.length >= 3) {
+//                        if (args.length == 4 && args[3].equals("-l")) {
+//                            delete(args[1], args[2], true);
+//                        } else if (!args[3].equals("-l")) {
+//                            System.out.println("命令格式为：del 源文件夹 正则表达式 [-l]");
+//                        }
+//                    } else {
+//                        System.out.println("命令格式为：del 源文件夹 正则表达式 [-l]");
+//                    }
+//                    break;
+//                default:
+//                    System.out.println("错误命令，输入--help查看帮助");
+//            }
+//        } else {
+//            System.out.println("输入--help查看帮助");
+//        }
     }
 
     /**
